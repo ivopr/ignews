@@ -13,7 +13,7 @@ interface User {
   }
 }
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const fun =  async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
     const session = await getSession({ req })
 
@@ -64,3 +64,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     res.status(405).end("Method Not Allowed!")
   }
 }
+
+export default fun;
