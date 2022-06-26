@@ -14,7 +14,7 @@
     "axios": "^0.21.1",
     "faunadb": "4.1.1",
     "jest-mock": "^28.1.1",
-    "next": "10.0.9",
+    "next": "12",
     "next-auth": "3.7.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
@@ -31,11 +31,13 @@
     "@types/prismic-dom": "^2.1.1",
     "@types/react": "^17.0.3",
     "babel-jest": "^28.1.1",
+    "eslint": "8.18.0",
+    "eslint-config-next": "12.1.6",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^28.1.1",
     "jest-dom": "^4.0.0",
     "jest-environment-jsdom": "^28.1.1",
     "ts-jest": "^27.0.0",
-    "typescript": "^4.2.3"
+    "typescript": "^4.3.2"
   }
 }
