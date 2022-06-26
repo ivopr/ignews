@@ -1,9 +1,11 @@
+/* eslint-disable @next/next/no-img-element */
 import Head from "next/head"
 import { GetStaticProps } from "next"
 import { SubscribeButton } from "../components/SubscribeButton"
 
 import styles from "./home.module.scss"
 import { stripe } from "../services/stripe"
+import Image from "next/image"
 
 interface HomeProps {
   product: {

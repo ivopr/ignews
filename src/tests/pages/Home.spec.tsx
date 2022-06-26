@@ -4,10 +4,13 @@ import Home, { getStaticProps } from "../../pages";
 import { stripe } from "../../services/stripe";
 
 jest.mock('../../services/stripe');
-jest.mock("next-auth/client", () => {
+jest.mock("next-auth/react", () => {
   return {
     useSession() {
-      return [null, false];
+      return {
+        data: null,
+        status: "unauthenticated"
+      };
     }
   }
 });

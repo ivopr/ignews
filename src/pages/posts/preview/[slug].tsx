@@ -1,5 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from "next"
-import { useSession } from "next-auth/client"
+import { useSession } from "next-auth/react"
 import Head from "next/head"
 import Link from "next/link"
 import { useRouter } from "next/router"
@@ -19,7 +19,7 @@ interface PostPreviewProps {
 }
 
 export default function PostPreview({ post }: PostPreviewProps) {
-  const [session] = useSession()
+  const { data: session } = useSession()
   const router = useRouter()
 
   useEffect(() => {

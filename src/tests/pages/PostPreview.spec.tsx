@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { mocked } from "jest-mock";
-import { getSession, useSession } from "next-auth/client";
+import { getSession, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import Post, { getStaticProps } from "../../pages/posts/preview/[slug]";
 import { getPrismicClient } from "../../services/prismic";
@@ -18,13 +18,16 @@ const mockedPost: {
 };
 
 jest.mock("../../services/prismic");
-jest.mock("next-auth/client");
+jest.mock("next-auth/react");
 jest.mock("next/router");
 
 describe('Post Preview Page', () => {
   it('renders correctly', () => {
     const useSessionMocked = mocked(useSession);
-    useSessionMocked.mockReturnValueOnce([null, false]);
+    useSessionMocked.mockReturnValueOnce({
+      data: null,
+      status: "unauthenticated"
+    });
 
     render(<Post post={mockedPost} />);
 
@@ -35,9 +38,12 @@ describe('Post Preview Page', () => {
 
   it('redirects user if subscription is found', async () => {
     const useSessionMocked = mocked(useSession);
-    useSessionMocked.mockReturnValueOnce([{
-      activeSubscription: "fake-active-sub"
-    } as any, false]);
+    useSessionMocked.mockReturnValueOnce({
+      data: {
+        activeSubscription: "fake-active-sub"
+      } as any,
+      status: "authenticated"
+    });
 
     const useRouterMocked = mocked(useRouter);
     const pushMock = jest.fn();
