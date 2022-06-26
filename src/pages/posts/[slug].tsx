@@ -1,7 +1,7 @@
 import { GetServerSideProps } from "next"
 import Head from "next/head"
 import { getSession } from "next-auth/client"
-import { RichText } from "prismic-dom"
+import * as RichText from "@prismicio/helpers"
 import { getPrismicClient } from "../../services/prismic"
 
 import styles from "./post.module.scss"
@@ -57,7 +57,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params, req }) =>
   const post = {
     slug: slug,
     title: RichText.asText(response?.data.title),
-    content: RichText.asHtml(response?.data.content),
+    content: RichText.asHTML(response?.data.content),
     updatedAt: new Date(response?.last_publication_date).toLocaleDateString("pt-BR", {
       day: "2-digit",
       month: "long",
@@ -69,6 +69,5 @@ export const getServerSideProps: GetServerSideProps = async ({ params, req }) =>
     props: {
       post
     },
-    revalidate: 60 * 30, // 30 minutos
   }
 }
