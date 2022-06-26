@@ -40,14 +40,12 @@ export default NextAuth({
         return {
           ...session,
           activeSubscription: userActiveSubscription,
-          expires: "never"
-        }
+        } as any
       } catch {
         return {
           ...session,
           activeSubscription: null,
-          expires: "never"
-        }
+        } as any
       }
     },
     async signIn(user) {
