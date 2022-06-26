@@ -38,7 +38,7 @@ export default NextAuth({
         )
   
         return {
-          session,
+          ...session,
           user,
           activeSubscription: !!userActiveSubscription,
           expires: session.expires
@@ -46,7 +46,8 @@ export default NextAuth({
       } catch {
         return {
           ...session,
-          activeSubscription: null,
+          user,
+          activeSubscription: false,
           expires: session.expires
         }
       }
