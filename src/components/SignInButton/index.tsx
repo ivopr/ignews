@@ -8,14 +8,14 @@ import styles from "./styles.module.scss"
 export function SignInButton() {
   const { data } = useSession();
 
-  return data?.session ? (
+  return data ? (
     <button
       className={styles.signInButton}
       onClick={() => signOut()}
       type="button"
     >
-      <img src={data.session.user.image} alt={data.session.user.name} />
-      {data.session.user.name}
+      <img src={data.user.image} alt={data.user.name} />
+      {data.user.name}
       <FiX color="#737380" className={styles.closeIcon} />
     </button>
   ) : (

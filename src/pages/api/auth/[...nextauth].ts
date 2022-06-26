@@ -39,14 +39,12 @@ export default NextAuth({
   
         return {
           ...session,
-          user,
           activeSubscription: !!userActiveSubscription,
           expires: session.expires
         }
       } catch {
         return {
           ...session,
-          user,
           activeSubscription: false,
           expires: session.expires
         }
