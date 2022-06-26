@@ -3,6 +3,7 @@ import { FiX } from "react-icons/fi"
 import { signIn, signOut, useSession } from "next-auth/client"
 
 import styles from "./styles.module.scss"
+import Image from "next/image"
 
 export function SignInButton() {
   const [session] = useSession()
@@ -13,7 +14,7 @@ export function SignInButton() {
       onClick={() => signOut()}
       type="button"
     >
-      <img src={session.user.image} alt={session.user.name} />
+      <Image src={session.user.image} alt={session.user.name} />
       {session.user.name}
       <FiX color="#737380" className={styles.closeIcon} />
     </button>

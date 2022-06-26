@@ -1,16 +1,14 @@
 import { query as q } from "faunadb"
 import NextAuth from "next-auth"
-import { Session } from "next-auth/adapters"
-import Providers from "next-auth/providers"
+import GitHubProvider from "next-auth/providers/github"
 
 import { fauna } from "../../../services/fauna"
 
 export default NextAuth({
   providers: [
-    Providers.GitHub({
+    GitHubProvider({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
-      scope: "read:user"
     })
   ],
   callbacks: {
@@ -41,16 +39,18 @@ export default NextAuth({
   
         return {
           ...session,
-          activeSubscription: userActiveSubscription
+          activeSubscription: userActiveSubscription,
+          expires: "never"
         }
       } catch {
         return {
           ...session,
-          activeSubscription: null
+          activeSubscription: null,
+          expires: "never"
         }
       }
     },
-    async signIn(user, account, profile) {
+    async signIn(user) {
       const { email } = user
 
       try {   
@@ -77,9 +77,9 @@ export default NextAuth({
           )
         )
         
-        return true
+        return true;
       } catch {
-        return false
+        return false;
       }
     }
   }
